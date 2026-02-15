@@ -73,8 +73,6 @@ frame.auto.loue
 frame.infractions
 frame.temps.sinistre
 
-
-
 f.graphe <- function(frame,xvec,arg=TRUE)
     {
         if (arg)
@@ -148,12 +146,6 @@ f.log <- function(frame,xvec)
         par(op)
     }
 
-
-
-
-
-
-
 f.carre <- function(frame,xvec)
     {
         op <- par(mfrow=c(2,2))
@@ -170,7 +162,6 @@ main="Sévérité des sinistres",
         par(op)
     }
 
-
 f.expo <- function(frame,xvec)
     {
         op <- par(mfrow=c(2,2))
@@ -186,13 +177,6 @@ main="Sévérité des sinistres",
 
         par(op)
     }
-
-
-
-
-
-
-
 
 f.inv <- function(frame,xvec)
     {
@@ -300,20 +284,6 @@ data.freq$Age_vehicule <- Age_vehicule
 data.sev <- data.t.sev
 data.sev$Age_vehicule <- log(Age_vehicule+0.01)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 f.summary <- function(modele,arg=TRUE)
 {
     aovv <- anova(modele)
@@ -348,11 +318,6 @@ f.summary.glm <- function(modele)
  data.frame(Null.deviance=mod$null.deviance,Res.deviance=mod$deviance,
                AIC=mod$aic)
 }
-
-
-
-
-
 
 f.postulat.glm <- function(modele)
 {
@@ -405,7 +370,6 @@ main=paste("QQ-Plot normal pour",
                ylab="Résidus studentisés",pch=16)
 }
 
-
 # Modèle 1
 
 mod.freq11 <- lm(freq~.,data=data.expl)
@@ -416,7 +380,6 @@ f.summary(mod.sev11)
 
 f.summary(mod.freq11,FALSE)
 f.summary(mod.sev11,FALSE)
-
 
 #analyse avec variable indicatrice pour variable numérique
 #tout indique qu'il faut mettre ces variables numériques en factor
@@ -431,9 +394,6 @@ summary(mod.sev.fact11)
 f.summary(mod.freq.fact11,FALSE)
 f.summary(mod.sev.fact11,FALSE)
 
-
-
-
 #analyse des transformations
 
 mod.freq.fact12 <- lm(freq~.,data=data.t.freq) #modeles avec #transformations
@@ -443,7 +403,6 @@ f.summary(mod.freq.fact12)
 f.summary(mod.freq.fact12,FALSE)
 f.summary(mod.sev.fact12)
 f.summary(mod.sev.fact12,FALSE)
-
 
 #modele 2
 
@@ -468,9 +427,6 @@ f.summary(mod.sev.fact22)
 f.summary(mod.sev.fact22,FALSE)
 f.summary(mod.sev.fact23)
 f.summary(mod.sev.fact23,FALSE)
-
-
-
 
 #modele 3
 
@@ -510,8 +466,6 @@ mod.sev51 <- glm(sev~.,data=data.factor,family=Gamma(link=log),
                  weights=Nbre_sinistres)
 mod.freq53 <- glm(Nbre_sinistres~.+offset(log(Nbre_risques))
                   ,data=data.freq,family=poisson)
-
-
 mod.sev53 <- glm(sev~.,data=data.sev,family=Gamma(link=log),
                  weights=Nbre_sinistres)
 summary(mod.freq53)
@@ -529,7 +483,6 @@ mod.freq52 <- glm(Nbre_sinistres~.+offset(log(Nbre_risques))
                   ,data=data.t.freq,family=poisson)
 mod.sev52 <- glm(sev~.,data=data.t.sev,family=Gamma(link=log),
                  weights=Nbre_sinistres)
-
 f.summary.glm(mod.freq52)
 f.summary.glm(mod.sev52)
 
@@ -582,15 +535,6 @@ fitted.pred <- exp(fitted(mod.final))
 data.pred <- dat.h[,2:23]
 data.pred$PP.pred <- fitted.pred
 
-
-
-
-
-
-
-
-
-
 f.graphe.pred <- function(yy,xvec,arg=TRUE)
     {
         count <- as.data.frame(table(yy))$Freq
@@ -599,7 +543,6 @@ f.graphe.pred <- function(yy,xvec,arg=TRUE)
 PP.pred=PP.prev/count)
         if (arg)
             {
-
                 plot(frame$PP.pred~frame$var.exo,
 main="Prime Pure prédite",
 xlab=xvec,col="blue",ylab="Prime Pure prédite",pch=20)
@@ -628,7 +571,6 @@ main=paste("Prime Pure",
                         ylab="Prime Pure",xlab=xvec)
             }
     }
-
 
 op <- par(mfrow=c(2,2))
 f.graphe.pred(Annee,"Annee")
@@ -665,10 +607,6 @@ f.graphe.pred(Temps_sn_sin,"Temps depuis le dernier sinistre")
 f.graphe.uni(frame.temps.sinistre, "Nombre d'année depuis dernier sinistre")
 par(op)
 
-
-
-
-
 op <- par(mfrow=c(2,2))
 f.graphe.pred(Nbre_enfants,"Nombre d'enfants",FALSE)
 f.graphe.uni(frame.enfant,"Nombre d'enfants",FALSE)
@@ -704,11 +642,6 @@ f.graphe.pred(Ind_vehicule_sport,"Vehicule de type sport",FALSE)
 f.graphe.uni(frame.sport,"Véhicule Sport",FALSE)
 par(op)
 
-
-
-
-
-
 op <- par(mfrow=c(2,2))
 f.graphe.pred(Couleur_vehicule,"Couleur du véhicule",FALSE)
 f.graphe.uni(frame.couleur.auto,"Couleur du véhicule",FALSE)
@@ -725,7 +658,6 @@ table.anova
 
 coef.det <- f.summary(mod.final,FALSE)
 coef.det
-
 
 #Graphe des observations en fonction des valeurs prédites
 
@@ -744,10 +676,6 @@ x.bar
 
 f.postulat(mod.final)
 f.postulat(mod.final,FALSE)
-
-
-
-
 
 ##Prévision de la prime pure
 
