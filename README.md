@@ -144,7 +144,8 @@ Il met en évidence la chaîne de valeur :
 ## Auteur
 
 **Steve Soro**  
-Data Analyst Bilingue | Actuariat & BI  
+Analyste de Données Bilingue
+Actuariat & Intelligence d'Affaires  
 SQL • Python • Power BI • R  
 
 ---
